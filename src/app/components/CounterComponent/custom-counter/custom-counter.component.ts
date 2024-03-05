@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import {  customOperation } from 'src/app/shared/store/counter.actions';
+import { counterModel } from 'src/app/shared/store/counter.model';
 
 @Component({
   selector: 'app-custom-counter',
@@ -10,7 +11,7 @@ import {  customOperation } from 'src/app/shared/store/counter.actions';
 export class CustomCounterComponent {
   customInput!: number;
   operationSelected!:string
-  constructor(private store: Store<{ counter: { counter: number } }>) {}
+  constructor(private store: Store<{ counter: counterModel }>) {}
   onCustomOperation() {
     this.store.dispatch(
       customOperation({
