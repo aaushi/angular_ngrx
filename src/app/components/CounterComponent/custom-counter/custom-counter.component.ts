@@ -1,26 +1,36 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
 import {  customOperation } from 'src/app/shared/store/counter.actions';
 import { counterModel } from 'src/app/shared/store/counter.model';
+import { getCounterFeature, getCounterOwnerFromState, getCounterValueFromState } from 'src/app/shared/store/counter.selectors';
 
 @Component({
   selector: 'app-custom-counter',
   templateUrl: './custom-counter.component.html',
-  styleUrls: ['./custom-counter.component.scss'],
+  styleUrls: ['./custom-counter.component.scss']
 })
 export class CustomCounterComponent {
   customInput!: number;
-  operationSelected!:string
- 
+  operationSelected!: string;
+  ownerName!: string;
+  counterSubscription!:Subscription
+
   constructor(private store: Store<{ counter: counterModel }>) {}
+
+  ngOnInit() {
+    this.counterSubscription = this.store.select(getCounterOwnerFromState).subscribe(data => {
+      this.ownerName = data;
+      console.log("owner subscription")
+    });
+  }
+
   onCustomOperation() {
     this.store.dispatch(
       customOperation({
         value: +this.customInput,
-        selected: this.operationSelected,
+        selected: this.operationSelected
       })
     );
   }
-
- 
 }
