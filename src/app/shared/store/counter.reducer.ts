@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import {  customOperation, decrement, increment, reset } from './counter.actions';
+import {  customOperation, decrement, increment, renameOwner, reset } from './counter.actions';
 import { initialState } from './counter.state';
 
 const createCounterReducer = createReducer(
@@ -31,6 +31,12 @@ const createCounterReducer = createReducer(
         action.selected === 'add'
           ? state.counter + action.value
           : state.counter - action.value,
+    };
+  }),
+  on(renameOwner, (state,payload) => {
+    return {
+      ...state,
+      owner: payload.owner,
     };
   })
 );

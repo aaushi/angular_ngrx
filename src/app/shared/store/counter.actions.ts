@@ -9,4 +9,9 @@ export const customOperation = createAction(
   props<{ value: number; selected: string }>()
 );
 
+export const renameOwner = createAction(
+  'rename Owner Name',
+  props<{ owner:string }>()
+);
+
 

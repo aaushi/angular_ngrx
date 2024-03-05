@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { decrement, increment, reset } from 'src/app/shared/store/counter.actions';
+import { decrement, increment, renameOwner, reset } from 'src/app/shared/store/counter.actions';
 import { counterModel } from 'src/app/shared/store/counter.model';
 
 @Component({
@@ -9,15 +9,19 @@ import { counterModel } from 'src/app/shared/store/counter.model';
   styleUrls: ['./counter-button.component.scss'],
 })
 export class CounterButtonComponent {
-  constructor(private store:Store<{counter: counterModel}>){}
+  constructor(private store: Store<{ counter: counterModel }>) {}
   onIncrement() {
-    console.log("incremented")
+    console.log('incremented');
     this.store.dispatch(increment());
   }
   onDecrement() {
     this.store.dispatch(decrement());
   }
-  onReset(){
+  onReset() {
     this.store.dispatch(reset());
+  }
+  onRename(){
+    this.store.dispatch(renameOwner({owner:"Aaushi Gupta"}))
+
   }
 }
