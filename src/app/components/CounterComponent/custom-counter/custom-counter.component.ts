@@ -11,6 +11,7 @@ import { counterModel } from 'src/app/shared/store/counter.model';
 export class CustomCounterComponent {
   customInput!: number;
   operationSelected!:string
+ 
   constructor(private store: Store<{ counter: counterModel }>) {}
   onCustomOperation() {
     this.store.dispatch(
@@ -20,4 +21,6 @@ export class CustomCounterComponent {
       })
     );
   }
+
+ 
 }
