@@ -10,22 +10,27 @@ import { CounterDisplayComponent } from './components/CounterComponent/counter-d
 import { CustomCounterComponent } from './components/CounterComponent/custom-counter/custom-counter.component';
 import { FormsModule } from '@angular/forms';
 import { StoreDevtools, StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { CounterComponentComponent } from './components/CounterComponent/counter-component.component';
+import { BlogComponent } from './components/blog/blog.component';
+import {  createBlogReducer } from './shared/store/blog/blog.reducers';
 
 @NgModule({
   declarations: [
     AppComponent,
     CounterButtonComponent,
     CounterDisplayComponent,
-    CustomCounterComponent
+    CustomCounterComponent,
+    CounterComponentComponent,
+    BlogComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({counter:counterReducer}),
+    StoreModule.forRoot({ counter: counterReducer, blogReducer :createBlogReducer}),
     FormsModule,
-    StoreDevtoolsModule.instrument({maxAge:false, logOnly:!isDevMode()})
+    StoreDevtoolsModule.instrument({ maxAge: false, logOnly: !isDevMode() })
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
