@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
+import { AppStateModel } from 'src/app/shared/store/Global/AppState.model';
 import { counterModel } from 'src/app/shared/store/counter.model';
 import { getCounterValueFromState } from 'src/app/shared/store/counter.selectors';
 
@@ -11,7 +12,7 @@ import { getCounterValueFromState } from 'src/app/shared/store/counter.selectors
 })
 export class CounterDisplayComponent implements OnInit {
   counterDisplay!: number;
-  constructor(private store: Store<{ counter: counterModel }>) {}
+  constructor(private store: Store<AppStateModel>) {}
   ownerName = '';
 
   counterObservable$!:Observable<counterModel>
