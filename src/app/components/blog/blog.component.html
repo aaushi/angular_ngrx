@@ -2,8 +2,10 @@
 <div *ngFor="let b of blogsList" style="border: 1px solid black; margin :5px">
     <h3>{{b.title}}</h3>
     <p>{{b.description}}</p>
+    <p>{{b.id}}</p>
+    <button (click)="onUpdate(b.id)">Edit</button>
 </div>
 
-<button (click)="onAddBlog()">Add Blog</button>
+<button (click)="onAddBlog()">Add</button>
 
 

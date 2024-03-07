@@ -12,22 +12,30 @@ import { AddBlogComponent } from './add-blog/add-blog.component';
   styleUrls: ['./blog.component.scss']
 })
 export class BlogComponent {
+  blogsList!: BlogModel[];
+  
+  constructor(private store: Store<AppStateModel>, private dialog: MatDialog) {}
 
-  blogsList!:BlogModel[];
-  constructor(private store:Store<AppStateModel>,private dialog:MatDialog){}
-
-  ngOnInit(){
-    this.store.select(getBlogSelector).subscribe(data=>{
+  ngOnInit() {
+    this.store.select(getBlogSelector).subscribe(data => {
       this.blogsList = data;
       console.log(data);
-    })
+    });
   }
 
-  onAddBlog(){
-    this.openDialog();
+  onAddBlog() {
+    this.openDialog(0, 'Add Blog', false);
   }
-  openDialog(){
-    this.dialog.open(AddBlogComponent,{width:'60%'})
+  openDialog(id: number, dialogBoxTitle: string, isEdit: boolean) {
+    this.dialog.open(AddBlogComponent, {
+      width: '60%',
+      data: { id: id, dialogBoxTitle: dialogBoxTitle, isEdit: isEdit }
+    });
   }
 
+  onUpdate(id: number) {
+    this.openDialog(id, 'Edit Blog', true);
+    
+   
+  }
 }

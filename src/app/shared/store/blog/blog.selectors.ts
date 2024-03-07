@@ -16,4 +16,8 @@ export const getBlogSelector = createSelector(
          state =>  state.Blogs_ListObj
        );
 
+export const getBlogSelectorUsingId = (blogid:number)=>createSelector(
+         getBlogFeatureSelector,
+         (state)=> state.Blogs_ListObj.find((b)=>b.id===blogid) as BlogModel
+       );
 

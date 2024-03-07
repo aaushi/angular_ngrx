@@ -15,7 +15,6 @@ import { AppState } from './shared/store/Global/Appstate.state';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddBlogComponent } from './components/blog/add-blog/add-blog.component';
 import { MaterialModule } from './material.module';
-//import { AddBlogComponent } from '';
 
 @NgModule({
   declarations: [
@@ -25,7 +24,7 @@ import { MaterialModule } from './material.module';
     CustomCounterComponent,
     CounterComponentComponent,
     BlogComponent,
-    AddBlogComponent
+    AddBlogComponent,
   ],
   imports: [
     BrowserModule,
