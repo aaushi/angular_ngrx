@@ -4,6 +4,8 @@
     <p>{{b.description}}</p>
     <p>{{b.id}}</p>
     <button (click)="onUpdate(b.id)">Edit</button>
+
+    <button (click)="onDelete(b.id)">Delete</button>
 </div>
 
 <button (click)="onAddBlog()">Add</button>

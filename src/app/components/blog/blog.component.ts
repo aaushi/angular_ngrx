@@ -3,8 +3,12 @@ import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { AppStateModel } from 'src/app/shared/store/Global/AppState.model';
 import { BlogModel } from 'src/app/shared/store/blog/blog.model';
-import { getBlogSelector } from 'src/app/shared/store/blog/blog.selectors';
+import {
+  getBlogSelector,
+  getBlogSelectorUsingId
+} from 'src/app/shared/store/blog/blog.selectors';
 import { AddBlogComponent } from './add-blog/add-blog.component';
+import { deleteBlog } from 'src/app/shared/store/blog/blog.actions';
 
 @Component({
   selector: 'app-blog',
@@ -13,13 +17,13 @@ import { AddBlogComponent } from './add-blog/add-blog.component';
 })
 export class BlogComponent {
   blogsList!: BlogModel[];
-  
+
   constructor(private store: Store<AppStateModel>, private dialog: MatDialog) {}
 
   ngOnInit() {
     this.store.select(getBlogSelector).subscribe(data => {
       this.blogsList = data;
-      console.log(data);
+      //console.log(data);
     });
   }
 
@@ -35,7 +39,9 @@ export class BlogComponent {
 
   onUpdate(id: number) {
     this.openDialog(id, 'Edit Blog', true);
-    
-   
+  }
+
+  onDelete(id: number) {
+    this.store.dispatch(deleteBlog({ blogToBeDeleted: id }));
   }
 }
